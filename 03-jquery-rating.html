@@ -11,13 +11,7 @@
             /// Clear all the red stars 
             $(".star").removeClass('red')
             
-            /// Paint it Red!
-            $('.star').each( (index, elem) => {
-              const itemValue = $(elem).attr('data-value')
-              if(itemValue <= value) {
-                $(elem).addClass('red')
-              }
-            })
+
             $.ajax({
             url: "https://api.dev-master.ninja/js/rating",
             method: "POST",
@@ -31,7 +25,6 @@
                 if(itemValue <= returnValue)
                 $(item).addClass('red')
               })
-;
             }
             })
             })
