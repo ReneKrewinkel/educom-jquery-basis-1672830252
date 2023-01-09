@@ -7,8 +7,7 @@
       $(document).ready( function() {
 
          $(".star").click( function() {
-            const value = $(this).attr('data-value')
-             
+            const value = $(this).attr('data-value')             
             /// Clear all the red stars 
             $(".star").removeClass('red')
             
@@ -23,9 +22,16 @@
             url: "https://api.dev-master.ninja/js/rating",
             method: "POST",
             data: { rating: value },
-            success: function(result) { 
-                var average = data['data-value'];
-                $('#avgrating_'+postid).text(average);
+            success: function(serverWaarde) { 
+              const returnValue = serverWaarde.result
+              $("#waarde").html(returnValue)
+
+              $(".star").each( (index,item) =>{
+                const itemValue = $(item).attr("data-value")
+                if(itemValue <= returnValue)
+                $(item).addClass('red')
+              })
+;
             }
             })
             })
