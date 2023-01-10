@@ -18,7 +18,6 @@
             data: { rating: value },
             success: function(serverWaarde) { 
               const returnValue = serverWaarde.result
-              $("#waarde").html(returnValue)
 
               $(".star").each( (index,item) =>{
                 const itemValue = $(item).attr("data-value")
