@@ -2,6 +2,32 @@
   <head>
     <link rel="stylesheet" href="css/style.css"/>
     <script src="js/jquery.js"></script>
+    <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" /> 
+      <script src="js/jquery.js"></script>
+      <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+     
+      <script>
+        $(document).ready( function() {
+          
+
+          const dTable = $("#theBeatles").DataTable({
+            ajax: "https://api.dev-master.ninja/js/beatles", 
+            columns: [
+                  { data: "id"},
+                  { data: "firstname" }, 
+                  { data: "lastname"},                        
+                  { data: "dateOfBirth"},
+                  { data: "email" }
+              ] 
+            })
+
+            // Reload the table every 10 seconds
+            setInterval( function () {
+              dTable.ajax.reload()
+            }, 10000 )
+
+        })
+      </script>
     <script>
       $(document).ready( function() {
             $("#save").click( function() {
@@ -30,6 +56,19 @@
         lastname: <input type="text" id="lastname"><br>
         email: <input type="text" id="email"><br>    
     </form>
+    <table id="theBeatles"
+             class="display nowrap dataTable dtr-inline collapsed">
+          <thead>
+            <th>ID</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Date of Birth</th>
+            <th>Email</th>
+          </thead>
+          <tbody> 
+          </tbody>
+      </table>
+  
     <button id="save">Save</button>
   </body>
 </html>
